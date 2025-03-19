@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hybrid 3D-4D Gaussian Splatting for Fast Dynamic Scene Representation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/logo.png">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS: Gray Top & Bottom -->
+  <style>
+    body {
+      background: #fffafa; /* Off-white for overall page */
+      font-family: 'Pretendard', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section with Gray Background */
+    .fancy-hero {
+      background: #f4f4f4;
+      color: #333;
+      padding: 1rem 1.5rem;
+    }
+    .fancy-hero .publication-title {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Button Hover Effects */
+    .button:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Section spacing (content sections remain white) */
+    .section {
+      padding: 3rem 1.5rem;
+      background: #fff;
+    }
+
+    /* Content images style */
+    .content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer Styling with Gray Background */
+    .footer {
+      background: #222;
+      color: #aaa;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid #ccc;
+    }
+    .footer a {
+      color: #2575fc;
+      text-decoration: underline;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- Load the necessary polyfill (optional, helps older browsers) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <!-- Load MathJax 3 -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+
+  <!-- Main Hero Section (no navbar, no banner image) -->
+  <section class="hero fancy-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              Hybrid 3D-4D Gaussian Splatting <br> for Fast Dynamic Scene Representation
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/ohsngjun" target="_blank">Seungjun Oh</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/Younggeun-L" target="_blank">Younggeun Lee</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/jeonhhyejin" target="_blank">Hyejin Jeon</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://silverbottlep.github.io/index.html" target="_blank">Eunbyung Park</a><sup>2</sup>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+              <span class="author-block">
+                <sup>1</sup>Department of Artificial Intelligence, Sungkyunkwan University<br>
+                <sup>2</sup>Department of Artificial Intelligence, Yonsei University
+              </span>
+            </div>
+            <div class="publication-links" style="margin-top: 1rem;">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser Video Section -->
+  <section class="hero teaser">
+    <div class="container is-fullhd">
+      <div class="hero-body">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <source src="static/videos/teaser.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paper Abstract Section -->
+  <section class="section hero">
+    <div class="container is-fullhd">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <img src="static/images/fast.jpg" alt="Project Illustration">
+            <p>
+              Recent advancements in dynamic 3D scene reconstruction have shown promising results, enabling high-fidelity
+              3D novel view synthesis with improved temporal consistency. Among these, 4D Gaussian Splatting (4DGS) has
+              emerged as an appealing approach due to its ability to model high-fidelity spatial and temporal variations.
+              However, existing methods suffer from substantial computational and memory overhead due to the redundant
+              allocation of 4D Gaussians to static regions, which can also degrade image quality. In this work, we
+              introduce hybrid 3D–4D Gaussian Splatting <b>(3D-4DGS)</b>, a novel framework that adaptively represents
+              static regions with 3D Gaussians while reserving 4D Gaussians for dynamic elements. Our method begins with
+              a fully 4D Gaussian representation and iteratively converts temporally invariant Gaussians into 3D,
+              significantly reducing the number of parameters and improving computational efficiency. Meanwhile,
+              dynamic Gaussians retain their full 4D representation, capturing complex motions with high fidelity. Our
+              approach achieves significantly faster training times compared to baseline 4D Gaussian Splatting methods
+              while maintaining or improving the visual quality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method Section -->
+  <section class="section hero">
+    <div class="container is-fullhd">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method</h2>
+          <div class="content has-text-justified">
+            <img src="static/images/main3.png" alt="Method Diagram">
+            <p>
+              Our hybrid 3D-4D Gaussian Splatting method converges rapidly by combining the 3D Gaussian optimization process with 4DGS.
+              <br><br><b>(a)</b> 4D Gaussians are optimized over time. Each 4D Gaussian is defined by a spatial center (<em>μ<sub>x</sub></em>), a temporal coordinate (<em>μ<sub>t</sub></em>), and a 4×4 rotation matrix that can mix space and time. If its temporal scale exceeds a threshold (τ), we convert it into a static 3D Gaussian by removing the time dimension. In this static case, the rotation matrix simplifies to a purely spatial rotation (<em>R<sub>3D</sub></em>), which we encode as a unit quaternion.
+            </p>
+          </p>
+          <p>
+            In the ideal static case, the 4D rotation matrix is given by:
+          </p>
+          <p>
+            $$ 
+            R_{4D} =
+            \begin{pmatrix}
+                R_{3D} & \mathbf{0} \\
+                \mathbf{0}^\top & 1
+            \end{pmatrix}
+            \quad \text{(ideal static case),}
+            $$ 
+          </p>
+          <p>
+            Consequently, each static Gaussian is fully specified by its 3D position, rotation, scale, opacity, and color—and remains constant over time. In contrast, dynamic Gaussians retain their full 4D parameterization.
+          </p>
+          <p>
+              <br><b>(b)</b> Both 3D and 4D Gaussians are projected into screen space, assigned tile and depth keys, and sorted for rasterization. The rendered image is generated by blending static (3D) and dynamic (4D) Gaussians.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Result Section -->
+    <section class="section hero">
+      <div class="container is-fullhd">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Results</h2>
+            <div class="content has-text-justified">
+              <p><b>Qualitative comparison</b></p>
+              <img src="static/images/qual1.jpeg" alt="Method Diagram">
+              <br><br><br>
+              <p><b>Dynamic vs. Static visualization</b></p>
+              <img src="static/images/static.jpg" alt="Method Diagram">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- BibTeX Section -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>_</code></pre>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  
+
+  <!-- Statcounter tracking code (optional) -->
+</body>
+</html>
